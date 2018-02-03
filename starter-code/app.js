@@ -1,15 +1,20 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-var index = require('./routes/index.routes');
-//var users = require('./routes/users');
+const index = require('./routes/index.routes');
+//const users = require('./routes/users');
 
-var app = express();
+const app = express();
+
+//connect to database
+require('./config/config.db.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
