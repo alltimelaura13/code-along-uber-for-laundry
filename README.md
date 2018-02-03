@@ -27,20 +27,20 @@
     		- [x ] Password (requerido, >5)
             - [ x] Mostrar errores en la vista
        	- [ x] Mongoose pre-save con hashing de contraseña (bcrypt)
-       	- [ ] Método checkPassword
-       	- [ ] Rellenar la vista en caso de error con los datos anteriores.
-- [ ] **Mirar desde la consola de mongo que el usuario se ha creado bien**
+       	- [x] Método checkPassword
+       	- [x] Rellenar la vista en caso de error con los datos anteriores.
+- [x] **Mirar desde la consola de mongo que el usuario se ha creado bien**
 
 ### 3 - Login
 - [ ] **Dependencias**:
-	- [ ] express-session
-	- [ ] passport
-	- [ ] passport-local
-	- [ ] connect-mongo
-	- [ ] connect-flash
+	- [ x] express-session
+	- [ x] passport
+	- [ x] passport-local
+	- [ x] connect-mongo
+	- [ x] connect-flash
 - [ ] **Configuración**:
-    - [ ] express-session & connect-mongo
-	- [ ] passport & passport-local
+    - [x] express-session & connect-mongo
+	- [x] passport & passport-local
 - [ ] **Rutas y Controlador**:
 	- [ ] `auth.routes.js` & `auth.controller.js`
 	- [ ] `GET /login` => `module.exports.login`
