@@ -16,6 +16,7 @@ const flash = require('connect-flash');
 
 const index = require('./routes/index.routes');
 const auth = require('./routes/auth.routes');
+const profile = require('./routes/profile.routes');
 //const users = require('./routes/users');
 
 const app = express();
@@ -64,6 +65,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/', auth);
+app.use('/', profile);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler

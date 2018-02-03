@@ -42,34 +42,34 @@
     - [x] express-session & connect-mongo
 	- [x] passport & passport-local
 - [ ] **Rutas y Controlador**:
-	- [ ] `auth.routes.js` & `auth.controller.js`
-	- [ ] `GET /login` => `module.exports.login`
-	- [ ] `POST /login` => `module.exports.doLogin`
-		- [ ] Validaciones email & password no vacíos
-		- [ ] Rellenar la vista en caso de error con los datos anteriores (email).
-		- [ ] Middleware secure (isAuthenticated, nonAuthenticated); proteger rutas
-		- [ ] Añadir middleware para tener en la vista siempre el usuario que logado (app.js antes de las rutas): `res.locals.session = req.user || {};`
-		- [ ] Mostrar el email del usuario en el index `Welcome to Uber for Laundry <strong>(user@ironhack.com).</strong>`
-		- [ ] Mostrar solo las rutas del index necesarias en función de si el usuario está conectado o no.
-- [ ] **Fash**:
-	- [ ] Configurar (app.js): 
+	- [x ] `auth.routes.js` & `auth.controller.js`
+	- [ x] `GET /login` => `module.exports.login`
+	- [ x] `POST /login` => `module.exports.doLogin`
+		- [x ] Validaciones email & password no vacíos
+		- [ x] Rellenar la vista en caso de error con los datos anteriores (email).
+		- [x] Middleware secure (isAuthenticated, nonAuthenticated); proteger rutas
+		- [ x] Añadir middleware para tener en la vista siempre el usuario que logado (app.js antes de las rutas): `res.locals.session = req.user || {};`
+		- [ x] Mostrar el email del usuario en el index `Welcome to Uber for Laundry <strong>(user@ironhack.com).</strong>`
+		- [x ] Mostrar solo las rutas del index necesarias en función de si el usuario está conectado o no.
+- [x ] **Fash**:
+	- [x ] Configurar (app.js): 
 	``` 
     const flash = requiere('connect-flash');
     app.use(flash());
     
 	```
-    - [ ] Usar: `req.flash('welcome', 'Welcome back ${email}')` 
-	- [ ] Cuando el usuario inicia sesión mostrar un mensaje en el index que diga `Welcome back user@ironhack.com`
+    - [ x] Usar: `req.flash('welcome', 'Welcome back ${email}')` 
+	- [ x] Cuando el usuario inicia sesión mostrar un mensaje en el index que diga `Welcome back user@ironhack.com`
 
 ### 3 - Logout
-- [ ] **Rutas y Controlador**:
-	- [ ] `auth.routes.js` & `auth.controller.js`
-	- [ ] `GET /logout` => `module.exports.logout`
+- [x ] **Rutas y Controlador**:
+	- [ x] `auth.routes.js` & `auth.controller.js`
+	- [x ] `GET /logout` => `module.exports.logout`
 
 ### 3 - Hacerse lavandero:
 - [ ] **Rutas y Controlador**:
-	- [ ] `laundry.routes.js` & `laundry.controller.js`
-	- [ ] `GET /dashboard` => `module.exports.dashboard`
+	- [x ] `laundry.routes.js` & `laundry.controller.js`
+	- [x ] `GET /dashboard` => `module.exports.dashboard`
 	- [ ] `POST /launderers` => `module.exports.doLaunder`
 		- [ ] Validacion de **fee**, no puede ser vacío y > 0
    	- [ ] En el dashboard, mostrar sólo el formulario si no eres lavandero, si lo eres indicarlo y mostrar el fee.
