@@ -4,19 +4,19 @@
 ### 1 - Estructura del proyecto
 - [ ] **Clonar el repo**:  https://github.com/ironhack-labs/code-along-uber-for-laundry
 - [ ] **Cambiar estructura a MVC**:
-	- [ ] Separar rutas y controladores
-	- [ ] Añadir terminaciones _.model_, _.controller_, _.routes_
-	- [ ] Añadir nodemon
-	- [ ] Añadir **script dev** `"dev": "DEBUG=starter-code:* nodemon bin/www"`
-	- [ ] Ejecutar `npm run dev` y todo OK.
+	- [x ] Separar rutas y controladores
+	- [ x] Añadir terminaciones _.model_, _.controller_, _.routes_
+	- [ x] Añadir nodemon
+	- [x ] Añadir **script dev** `"dev": "DEBUG=starter-code:* nodemon bin/www"`
+	- [ x] Ejecutar `npm run dev` y todo OK.
 
 ### 2 - Registro
 - [ ] **Dependencias**:
-	- [ ] mongoose
-	- [ ] bcrypt
+	- [x] mongoose
+	- [x] bcrypt
 - [ ] **Configración de MongoDB**:
-	- [ ] Fichero `db.config.js`
-	- [ ] Añadirlo al `app.js`
+	- [x ] Fichero `db.config.js`
+	- [x] Añadirlo al `app.js`
 - [ ] **Rutas y Controlador**:
     - [ ] `auth.routes.js` & `auth.controller.js`
     - [ ] `GET /signup` => `module.exports.signup`
