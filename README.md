@@ -18,13 +18,13 @@
 	- [x ] Fichero `db.config.js`
 	- [x] Añadirlo al `app.js`
 - [ ] **Rutas y Controlador**:
-    - [ ] `auth.routes.js` & `auth.controller.js`
-    - [ ] `GET /signup` => `module.exports.signup`
-    - [ ] `POST /signup` => `module.exports.doSignup`
+    - [ x] `auth.routes.js` & `auth.controller.js`
+    - [ x] `GET /signup` => `module.exports.signup`
+    - [ x] `POST /signup` => `module.exports.doSignup`
     	- [ ] Validaciones de moongoose:
-    		- [ ] Nombre (requerido)
-    		- [ ] Email (requerido, email y único)
-    		- [ ] Password (requerido, >5)
+    		- [ X] Nombre (requerido)
+    		- [X ] Email (requerido, email y único)
+    		- [x ] Password (requerido, >5)
             - [ ] Mostrar errores en la vista
        	- [ ] Mongoose pre-save con hashing de contraseña (bcrypt)
        	- [ ] Método checkPassword
