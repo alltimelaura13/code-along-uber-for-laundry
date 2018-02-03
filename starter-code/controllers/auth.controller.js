@@ -56,10 +56,7 @@ module.exports.doSignup = ((req, res, next) => {
 })
 
 module.exports.login = ((req, res, next) => {
-    let errorMessage = '';
-    res.render('auth/login', {
-        errorMessage: errorMessage
-    });
+    res.render('auth/login');
 })
 
 
