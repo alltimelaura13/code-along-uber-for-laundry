@@ -1,99 +1,102 @@
-![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
+## Uber For Laundry
+> **Ejemplo**: https://uber-for-laundry.herokuapp.com
 
-# Express | Code Along - Uber For Laundry
+### 1 - Estructura del proyecto
+- [ ] **Clonar el repo**:  https://github.com/ironhack-labs/code-along-uber-for-laundry
+- [ ] **Cambiar estructura a MVC**:
+	- [ ] Separar rutas y controladores
+	- [ ] Añadir terminaciones _.model_, _.controller_, _.routes_
+	- [ ] Añadir nodemon
+	- [ ] Añadir **script dev** `"dev": "DEBUG=starter-code:* nodemon bin/www"`
+	- [ ] Ejecutar `npm run dev` y todo OK.
 
-## Learning Goals
-- Add basic user authentication to an Express application.
-- Create sessions in an Express application.
-- Store user information in the session and use it in some routes.
-- Prevent anonymous (logged out) users from accessing parts of your application.
+### 2 - Registro
+- [ ] **Dependencias**:
+	- [ ] mongoose
+	- [ ] bcrypt
+- [ ] **Configración de MongoDB**:
+	- [ ] Fichero `db.config.js`
+	- [ ] Añadirlo al `app.js`
+- [ ] **Rutas y Controlador**:
+    - [ ] `auth.routes.js` & `auth.controller.js`
+    - [ ] `GET /signup` => `module.exports.signup`
+    - [ ] `POST /signup` => `module.exports.doSignup`
+    	- [ ] Validaciones de moongoose:
+    		- [ ] Nombre (requerido)
+    		- [ ] Email (requerido, email y único)
+    		- [ ] Password (requerido, >5)
+            - [ ] Mostrar errores en la vista
+       	- [ ] Mongoose pre-save con hashing de contraseña (bcrypt)
+       	- [ ] Método checkPassword
+       	- [ ] Rellenar la vista en caso de error con los datos anteriores.
+- [ ] **Mirar desde la consola de mongo que el usuario se ha creado bien**
+
+### 3 - Login
+- [ ] **Dependencias**:
+	- [ ] express-session
+	- [ ] passport
+	- [ ] passport-local
+	- [ ] connect-mongo
+	- [ ] connect-flash
+- [ ] **Configuración**:
+    - [ ] express-session & connect-mongo
+	- [ ] passport & passport-local
+- [ ] **Rutas y Controlador**:
+	- [ ] `auth.routes.js` & `auth.controller.js`
+	- [ ] `GET /login` => `module.exports.login`
+	- [ ] `POST /login` => `module.exports.doLogin`
+		- [ ] Validaciones email & password no vacíos
+		- [ ] Rellenar la vista en caso de error con los datos anteriores (email).
+		- [ ] Middleware secure (isAuthenticated, nonAuthenticated); proteger rutas
+		- [ ] Añadir middleware para tener en la vista siempre el usuario que logado (app.js antes de las rutas): `res.locals.session = req.user || {};`
+		- [ ] Mostrar el email del usuario en el index `Welcome to Uber for Laundry <strong>(user@ironhack.com).</strong>`
+		- [ ] Mostrar solo las rutas del index necesarias en función de si el usuario está conectado o no.
+- [ ] **Fash**:
+	- [ ] Configurar (app.js): 
+	``` 
+    const flash = requiere('connect-flash');
+    app.use(flash());
+    
+	```
+    - [ ] Usar: `req.flash('welcome', 'Welcome back ${email}')` 
+	- [ ] Cuando el usuario inicia sesión mostrar un mensaje en el index que diga `Welcome back user@ironhack.com`
+
+### 3 - Logout
+- [ ] **Rutas y Controlador**:
+	- [ ] `auth.routes.js` & `auth.controller.js`
+	- [ ] `GET /logout` => `module.exports.logout`
+
+### 3 - Hacerse lavandero:
+- [ ] **Rutas y Controlador**:
+	- [ ] `laundry.routes.js` & `laundry.controller.js`
+	- [ ] `GET /dashboard` => `module.exports.dashboard`
+	- [ ] `POST /launderers` => `module.exports.doLaunder`
+		- [ ] Validacion de **fee**, no puede ser vacío y > 0
+   	- [ ] En el dashboard, mostrar sólo el formulario si no eres lavandero, si lo eres indicarlo y mostrar el fee.
+   	```
+		 <h3> You are a launderer </h3>
+         <p>Your laundering fee is <strong>$<%= session.fee %>.</strong></p>
+	```
+
+### 4 - Buscar lavandero:
+- [ ] **Rutas y Controlador**:
+	- [ ] `laundry.routes.js` & `laundry.controller.js`
+	- [ ] `GET /launderers` => `module.exports.launders`
+
+### 5 - Concertar cita:
+- [ ] **Rutas y Controlador**:
+	- [ ] `laundry.routes.js` & `laundry.controller.js`
+	- [ ] `GET /launderers/:id` => `module.exports.profile`
+	- [ ] `GET /launderers/:id/schedule-pickup` => `module.exports.schedulePickup`: Ojo!! he cambiado la ruta, hay que modificar la vista que viene ya hecha!!
+		- [ ] Validacion de **date**, no puede ser vacío y > hoy 
+	- [ ] Mostrar en el `/dashboard` la lista de citas del usuario o lavandero que está conectado
+
+### 6 - Deploy heroku:
+- [ ] deploy npm script: `"deploy": "cd .. && git subtree push --prefix starter-code heroku master && cd starter-code"`
 
 
-## Setup
-
-Clone [the Uber For Laundry repo](https://github.com/ironhack-labs/code-along-uber-for-laundry) into your `~/code/labs` folder to get the starter code.
-
-```bash
-$ cd ~/code/labs
-$ git clone https://github.com/ironhack-labs/code-along-uber-for-laundry
-$ cd code-along-uber-for-laundry/
-```
-
-Run `npm install` to get all the modules from the `package.json` file.
-
-```bash
-$ npm install
-```
+Add CommentCollapse 
 
 
-## Introduction
 
-Let's face it: **everybody has to do laundry**. Even Batman.
-
-![](https://media.giphy.com/media/EvNfyRC5HMVzi/giphy.gif)
-
-Laundry takes so much of our time. Don't even get me started on _folding_. It's often tempting to just not do it. Go out in dirty clothes. Who will know?
-
-Until the day when we we all have robots to do our laundry for us, we have to do it ourselves.
-
-![](https://media.giphy.com/media/dbUbXn2rbivUQ/giphy.gif)
-
-_Or do we?_
-
-What if we could make an app in which we could have **other people do our laundry** for us. No, that's not what your mother is for. I'm talking about strangers with a lot of time on their hands that want to make some extra money on the side. Regular people like you or me!
-
-Let's create an app to solve the working professional's laundry problem using Express, Mongoose, bcrypt and sessions. Maybe we really _will_ become Uber for Laundry!
-
-The app will allow users to register and schedule a laundry pickup. They will be able to:
-
-1. Sign up as a user.
-2. Log in.
-3. Log out.
-4. Become a launderer (optional).
-5. Find a launderer.
-6. Schedule a laundry pickup with a launderer.
-7. See pending pickups.
-
-
-### Starter Code
-
-The starter code for this project includes:
-
-1. An app structure created by the `express-generator`.
-2. Layout already added for you.
-3. Views for all the pages we are going to be working with.
-4. The `User` and `LaundryPickup` models.
-
-```
-starter-code/
-├── .gitignore
-├── app.js
-├── bin
-│   └── www
-├── models
-│   ├── laundry-pickup.js
-│   └── user.js
-├── package.json
-├── public
-│   └── stylesheets
-│       └── style.css
-├── routes
-│   ├── index.js
-│   └── users.js
-└── views
-    ├── auth
-    │   ├── login.ejs
-    │   └── signup.ejs
-    ├── error.ejs
-    ├── index.ejs
-    ├── laundry
-    │   ├── dashboard.ejs
-    │   ├── launderer-profile.ejs
-    │   └── launderers.ejs
-    └── layouts
-        └── main-layout.ejs
-```
-
-If you visit the homepage, you will see that there are a bunch of links that don't work. We will be adding the routes for each of those pages as part of this lesson.
-
-Let's get to coding!
+Message webptmad1017
