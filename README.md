@@ -25,8 +25,8 @@
     		- [ X] Nombre (requerido)
     		- [X ] Email (requerido, email y único)
     		- [x ] Password (requerido, >5)
-            - [ ] Mostrar errores en la vista
-       	- [ ] Mongoose pre-save con hashing de contraseña (bcrypt)
+            - [ x] Mostrar errores en la vista
+       	- [ x] Mongoose pre-save con hashing de contraseña (bcrypt)
        	- [ ] Método checkPassword
        	- [ ] Rellenar la vista en caso de error con los datos anteriores.
 - [ ] **Mirar desde la consola de mongo que el usuario se ha creado bien**
